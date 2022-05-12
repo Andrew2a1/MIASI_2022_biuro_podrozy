@@ -2,6 +2,8 @@
 
 ## Uruchomienie flowable
 
+Pobierz i zainstaluj [Docker desktop](https://www.docker.com/products/docker-desktop/) wraz z WSL.
+
 Uruchom plik `start.bat` z poziomu eksploratora plików lub konsoli.
 
 ## Zatrzymanie kontenera flowable
