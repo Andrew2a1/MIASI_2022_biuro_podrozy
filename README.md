@@ -8,10 +8,17 @@ Uruchom plik `start.bat` z poziomu eksploratora plików lub konsoli.
 
 Uruchom plik `stop.bat` 
 
+## Linki
+
+- Flowable IDM (http://localhost:8080/flowable-idm)
+- Flowable Modeler (http://localhost:8080/flowable-modeler)
+- Flowable Task (http://localhost:8080/flowable-task)
+- Flowable Admin (http://localhost:8080/flowable-admin)
+
 ## Plan działania
 
 ### Sprint 1
-- [ ] Uruchomienie i zaznajomienie się z platformą flowable
+- [x] Uruchomienie i zaznajomienie się z platformą flowable
 
 ### Sprint 2
 - [ ] Przeniesienie diagramu do części związanej z podprocesem rezerwacji (bez tego podprocesu) `[Adam J, Adam Z]`
