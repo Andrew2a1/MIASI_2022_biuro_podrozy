@@ -1,62 +1,123 @@
-2022-05-04 17:12:47 database: opening /opt/tomcat/flowable-db/db
-org.h2.message.DbException: Error opening database: "Lock file recently modified" [8000-199]
+2022-05-12 14:40:31 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:350)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2787)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:441)
+	at org.h2.mvstore.MVStore.store(MVStore.java:1194)
+	at org.h2.mvstore.MVStore.tryCommit(MVStore.java:1135)
+	at org.h2.mvstore.MVStore.writeInBackground(MVStore.java:2763)
+	at org.h2.mvstore.MVStore$BackgroundWriterThread.run(MVStore.java:3123)
+	Suppressed: java.lang.NoClassDefFoundError: java/lang/StackOverflowError
+		at org.h2.message.DbException.convert(DbException.java:342)
+		... 7 more
+	Caused by: java.lang.ClassNotFoundException: Illegal access: this web application instance has been stopped already. Could not load [java.lang.StackOverflowError]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+		at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1353)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1211)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1173)
+		... 8 more
+	Caused by: java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [java.lang.StackOverflowError]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+		at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1363)
+		at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1351)
+		... 10 more
+Caused by: java.sql.SQLException: GeneralError
+	... 8 more
+Caused by: java.lang.IllegalStateException: java.lang.NoClassDefFoundError: java/util/concurrent/ArrayBlockingQueue [1.4.199/3]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	... 4 more
+Caused by: java.lang.NoClassDefFoundError: java/util/concurrent/ArrayBlockingQueue
+	at org.h2.mvstore.MVStore.collectReferencedChunks(MVStore.java:1446)
+	at org.h2.mvstore.MVStore.freeUnusedChunks(MVStore.java:1407)
+	at org.h2.mvstore.MVStore.freeUnusedIfNeeded(MVStore.java:1400)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:1208)
+	at org.h2.mvstore.MVStore.store(MVStore.java:1190)
+	... 3 more
+Caused by: java.lang.ClassNotFoundException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.ArrayBlockingQueue]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1353)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1211)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1173)
+	... 8 more
+Caused by: java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.ArrayBlockingQueue]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1363)
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1351)
+	... 10 more
+2022-05-12 14:40:34 jdbc[13]: 
+org.h2.message.DbException: The database has been closed [90098-199]
 	at org.h2.message.DbException.get(DbException.java:194)
-	at org.h2.store.FileLock.getExceptionFatal(FileLock.java:428)
-	at org.h2.store.FileLock.waitUntilOld(FileLock.java:280)
-	at org.h2.store.FileLock.lockFile(FileLock.java:317)
-	at org.h2.store.FileLock.lock(FileLock.java:108)
-	at org.h2.engine.Database.open(Database.java:734)
+	at org.h2.engine.Session.getTransaction(Session.java:1709)
+	at org.h2.engine.Session.getStatementSavepoint(Session.java:1720)
+	at org.h2.engine.Session.setSavepoint(Session.java:868)
+	at org.h2.command.Command.executeUpdate(Command.java:259)
+	at org.h2.engine.Engine.openSession(Engine.java:234)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:160)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The database has been closed [90098-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:617)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 10 more
+Caused by: java.lang.IllegalStateException: java.lang.NoClassDefFoundError: java/util/concurrent/ArrayBlockingQueue [1.4.199/3]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.MVStore.store(MVStore.java:1194)
+	at org.h2.mvstore.MVStore.tryCommit(MVStore.java:1135)
+	at org.h2.mvstore.MVStore.writeInBackground(MVStore.java:2763)
+	at org.h2.mvstore.MVStore$BackgroundWriterThread.run(MVStore.java:3123)
+Caused by: java.lang.NoClassDefFoundError: java/util/concurrent/ArrayBlockingQueue
+	at org.h2.mvstore.MVStore.collectReferencedChunks(MVStore.java:1446)
+	at org.h2.mvstore.MVStore.freeUnusedChunks(MVStore.java:1407)
+	at org.h2.mvstore.MVStore.freeUnusedIfNeeded(MVStore.java:1400)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:1208)
+	at org.h2.mvstore.MVStore.store(MVStore.java:1190)
+	... 3 more
+Caused by: java.lang.ClassNotFoundException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.ArrayBlockingQueue]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1353)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1211)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1173)
+	... 8 more
+Caused by: java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.ArrayBlockingQueue]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1363)
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1351)
+	... 10 more
+2022-05-12 14:40:34 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:350)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2787)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:441)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:404)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3343)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:162)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:95)
+	at org.h2.engine.Database.getPageStore(Database.java:2739)
+	at org.h2.engine.Database.open(Database.java:769)
 	at org.h2.engine.Database.openDatabase(Database.java:319)
 	at org.h2.engine.Database.<init>(Database.java:313)
 	at org.h2.engine.Engine.openSession(Engine.java:69)
 	at org.h2.engine.Engine.openSession(Engine.java:201)
 	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
 	at org.h2.engine.Engine.createSession(Engine.java:161)
-	at org.h2.engine.Engine.createSession(Engine.java:31)
-	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
-	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
-	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:160)
 	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: Error opening database: "Lock file recently modified" [8000-199]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 23 more
-2022-05-04 17:14:24 database: opening /opt/tomcat/flowable-db/db
-org.h2.message.DbException: Error opening database: "Lock file recently modified" [8000-199]
-	at org.h2.message.DbException.get(DbException.java:194)
-	at org.h2.store.FileLock.getExceptionFatal(FileLock.java:428)
-	at org.h2.store.FileLock.waitUntilOld(FileLock.java:280)
-	at org.h2.store.FileLock.lockFile(FileLock.java:317)
-	at org.h2.store.FileLock.lock(FileLock.java:108)
-	at org.h2.engine.Database.open(Database.java:734)
-	at org.h2.engine.Database.openDatabase(Database.java:319)
-	at org.h2.engine.Database.<init>(Database.java:313)
-	at org.h2.engine.Engine.openSession(Engine.java:69)
-	at org.h2.engine.Engine.openSession(Engine.java:201)
-	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
-	at org.h2.engine.Engine.createSession(Engine.java:161)
-	at org.h2.engine.Engine.createSession(Engine.java:31)
-	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
-	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
-	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: Error opening database: "Lock file recently modified" [8000-199]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 23 more
-2022-05-12 14:55:11 database: flush
+	Suppressed: java.lang.NoClassDefFoundError: java/lang/StackOverflowError
+		at org.h2.message.DbException.convert(DbException.java:342)
+		... 17 more
+Caused by: java.sql.SQLException: GeneralError
+	... 18 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
+	... 13 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
+	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
+	at java.base/sun.nio.ch.FileChannelImpl.tryLock(Unknown Source)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 14 more
+2022-05-12 14:40:35 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -103,7 +164,7 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 23 more
-2022-05-12 14:55:11 database: flush
+2022-05-12 14:40:35 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -150,7 +211,7 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 23 more
-2022-05-12 14:55:11 database: flush
+2022-05-12 14:40:36 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -197,7 +258,7 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 23 more
-2022-05-12 14:55:11 database: flush
+2022-05-12 14:40:36 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -244,7 +305,7 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 23 more
-2022-05-12 14:55:11 database: flush
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -267,22 +328,44 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
 	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
 	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
+	at org.h2.command.CommandRemote.executeQuery(CommandRemote.java:189)
+	at org.h2.jdbc.JdbcConnection.getTransactionIsolation(JdbcConnection.java:861)
+	at org.h2.jdbc.JdbcConnection.isValid(JdbcConnection.java:1764)
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:157)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:185)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl$2.run(ProcessEngineConfigurationImpl.java:2619)
+	at org.flowable.engine.impl.ProcessEngineImpl.close(ProcessEngineImpl.java:129)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 50 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 44 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -290,8 +373,60 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:14 database: flush
+	... 45 more
+2022-05-12 14:40:38 database: flush
+org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2787)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:441)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:404)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3343)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:162)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:95)
+	at org.h2.engine.Database.getPageStore(Database.java:2739)
+	at org.h2.engine.Database.open(Database.java:769)
+	at org.h2.engine.Database.openDatabase(Database.java:319)
+	at org.h2.engine.Database.<init>(Database.java:313)
+	at org.h2.engine.Engine.openSession(Engine.java:69)
+	at org.h2.engine.Engine.openSession(Engine.java:201)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.engine.Engine.createSession(Engine.java:31)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:169)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:148)
+	at org.h2.Driver.connect(Driver.java:69)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:354)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:473)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:719)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:705)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 33 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
+	... 27 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
+	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
+	at java.base/sun.nio.ch.FileChannelImpl.tryLock(Unknown Source)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 28 more
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -314,22 +449,47 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
 	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
 	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
+	at org.h2.command.CommandRemote.prepare(CommandRemote.java:101)
+	at org.h2.command.CommandRemote.<init>(CommandRemote.java:51)
+	at org.h2.engine.SessionRemote.prepareCommand(SessionRemote.java:477)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1296)
+	at org.h2.jdbc.JdbcConnection.getTransactionIsolation(JdbcConnection.java:860)
+	at org.h2.jdbc.JdbcConnection.isValid(JdbcConnection.java:1764)
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:157)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:185)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl$2.run(ProcessEngineConfigurationImpl.java:2619)
+	at org.flowable.engine.impl.ProcessEngineImpl.close(ProcessEngineImpl.java:129)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 53 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 47 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -337,8 +497,8 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:14 database: flush
+	... 48 more
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -361,22 +521,47 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
 	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
 	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
+	at org.h2.command.CommandRemote.prepare(CommandRemote.java:101)
+	at org.h2.command.CommandRemote.<init>(CommandRemote.java:51)
+	at org.h2.engine.SessionRemote.prepareCommand(SessionRemote.java:477)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1296)
+	at org.h2.jdbc.JdbcConnection.getTransactionIsolation(JdbcConnection.java:860)
+	at org.h2.jdbc.JdbcConnection.isValid(JdbcConnection.java:1764)
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:157)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:185)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl$2.run(ProcessEngineConfigurationImpl.java:2619)
+	at org.flowable.engine.impl.ProcessEngineImpl.close(ProcessEngineImpl.java:129)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 53 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 47 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -384,8 +569,8 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:14 database: flush
+	... 48 more
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -408,22 +593,47 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
 	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
 	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
+	at org.h2.command.CommandRemote.prepare(CommandRemote.java:101)
+	at org.h2.command.CommandRemote.<init>(CommandRemote.java:51)
+	at org.h2.engine.SessionRemote.prepareCommand(SessionRemote.java:477)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1296)
+	at org.h2.jdbc.JdbcConnection.getTransactionIsolation(JdbcConnection.java:860)
+	at org.h2.jdbc.JdbcConnection.isValid(JdbcConnection.java:1764)
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:157)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:185)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl$2.run(ProcessEngineConfigurationImpl.java:2619)
+	at org.flowable.engine.impl.ProcessEngineImpl.close(ProcessEngineImpl.java:129)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 53 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 47 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -431,8 +641,8 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:16 database: flush
+	... 48 more
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -455,22 +665,47 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
 	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
 	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
+	at org.h2.command.CommandRemote.prepare(CommandRemote.java:101)
+	at org.h2.command.CommandRemote.<init>(CommandRemote.java:51)
+	at org.h2.engine.SessionRemote.prepareCommand(SessionRemote.java:477)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1296)
+	at org.h2.jdbc.JdbcConnection.getTransactionIsolation(JdbcConnection.java:860)
+	at org.h2.jdbc.JdbcConnection.isValid(JdbcConnection.java:1764)
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:157)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:185)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl$2.run(ProcessEngineConfigurationImpl.java:2619)
+	at org.flowable.engine.impl.ProcessEngineImpl.close(ProcessEngineImpl.java:129)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 53 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 47 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -478,8 +713,8 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:16 database: flush
+	... 48 more
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -502,22 +737,47 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
 	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
 	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
+	at org.h2.command.CommandRemote.prepare(CommandRemote.java:101)
+	at org.h2.command.CommandRemote.<init>(CommandRemote.java:51)
+	at org.h2.engine.SessionRemote.prepareCommand(SessionRemote.java:477)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1296)
+	at org.h2.jdbc.JdbcConnection.getTransactionIsolation(JdbcConnection.java:860)
+	at org.h2.jdbc.JdbcConnection.isValid(JdbcConnection.java:1764)
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:157)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:185)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl$2.run(ProcessEngineConfigurationImpl.java:2619)
+	at org.flowable.engine.impl.ProcessEngineImpl.close(ProcessEngineImpl.java:129)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 53 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 47 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -525,8 +785,8 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:16 database: flush
+	... 48 more
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -549,22 +809,47 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
 	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
 	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
+	at org.h2.command.CommandRemote.prepare(CommandRemote.java:101)
+	at org.h2.command.CommandRemote.<init>(CommandRemote.java:51)
+	at org.h2.engine.SessionRemote.prepareCommand(SessionRemote.java:477)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1296)
+	at org.h2.jdbc.JdbcConnection.getTransactionIsolation(JdbcConnection.java:860)
+	at org.h2.jdbc.JdbcConnection.isValid(JdbcConnection.java:1764)
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:157)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:185)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl$2.run(ProcessEngineConfigurationImpl.java:2619)
+	at org.flowable.engine.impl.ProcessEngineImpl.close(ProcessEngineImpl.java:129)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 53 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 47 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -572,8 +857,8 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:16 database: flush
+	... 48 more
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -596,22 +881,47 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
 	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
 	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
+	at org.h2.command.CommandRemote.prepare(CommandRemote.java:101)
+	at org.h2.command.CommandRemote.<init>(CommandRemote.java:51)
+	at org.h2.engine.SessionRemote.prepareCommand(SessionRemote.java:477)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1296)
+	at org.h2.jdbc.JdbcConnection.getTransactionIsolation(JdbcConnection.java:860)
+	at org.h2.jdbc.JdbcConnection.isValid(JdbcConnection.java:1764)
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:157)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:185)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl$2.run(ProcessEngineConfigurationImpl.java:2619)
+	at org.flowable.engine.impl.ProcessEngineImpl.close(ProcessEngineImpl.java:129)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 53 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 47 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -619,8 +929,8 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:16 database: flush
+	... 48 more
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -643,22 +953,47 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
 	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
 	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
+	at org.h2.command.CommandRemote.prepare(CommandRemote.java:101)
+	at org.h2.command.CommandRemote.<init>(CommandRemote.java:51)
+	at org.h2.engine.SessionRemote.prepareCommand(SessionRemote.java:477)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1296)
+	at org.h2.jdbc.JdbcConnection.getTransactionIsolation(JdbcConnection.java:860)
+	at org.h2.jdbc.JdbcConnection.isValid(JdbcConnection.java:1764)
+	at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive(PoolBase.java:157)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:185)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:161)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doBegin(DataSourceTransactionManager.java:263)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:376)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:137)
+	at org.flowable.common.spring.SpringTransactionInterceptor.execute(SpringTransactionInterceptor.java:56)
+	at org.flowable.common.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:30)
+	at org.flowable.common.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:56)
+	at org.flowable.engine.impl.cfg.ProcessEngineConfigurationImpl$2.run(ProcessEngineConfigurationImpl.java:2619)
+	at org.flowable.engine.impl.ProcessEngineImpl.close(ProcessEngineImpl.java:129)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 53 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 47 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -666,8 +1001,8 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:16 database: flush
+	... 48 more
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -688,24 +1023,29 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.Engine.createSession(Engine.java:161)
 	at org.h2.engine.Engine.createSession(Engine.java:31)
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
-	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
-	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:169)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:148)
+	at org.h2.Driver.connect(Driver.java:69)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:354)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:473)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:719)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:705)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
 	at java.base/java.lang.Thread.run(Unknown Source)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 27 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -713,8 +1053,8 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:16 database: flush
+	... 28 more
+2022-05-12 14:40:38 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -735,24 +1075,29 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.Engine.createSession(Engine.java:161)
 	at org.h2.engine.Engine.createSession(Engine.java:31)
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
-	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
-	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:169)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:148)
+	at org.h2.Driver.connect(Driver.java:69)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:354)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:473)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:719)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:705)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
 	at java.base/java.lang.Thread.run(Unknown Source)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 27 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -760,8 +1105,8 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:16 database: flush
+	... 28 more
+2022-05-12 14:40:39 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -782,24 +1127,29 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at org.h2.engine.Engine.createSession(Engine.java:161)
 	at org.h2.engine.Engine.createSession(Engine.java:31)
 	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
-	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
-	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:169)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:148)
+	at org.h2.Driver.connect(Driver.java:69)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:354)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:473)
+	at com.zaxxer.hikari.pool.HikariPool.access$100(HikariPool.java:71)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:719)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:705)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
 	at java.base/java.lang.Thread.run(Unknown Source)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
-	... 28 more
+	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
+	... 27 more
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
 	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
@@ -807,51 +1157,4 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
 	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
-2022-05-12 14:55:17 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
-	at org.h2.message.DbException.get(DbException.java:194)
-	at org.h2.message.DbException.convert(DbException.java:347)
-	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
-	at org.h2.mvstore.MVStore.handleException(MVStore.java:2787)
-	at org.h2.mvstore.MVStore.panic(MVStore.java:441)
-	at org.h2.mvstore.MVStore.<init>(MVStore.java:404)
-	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3343)
-	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:162)
-	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:95)
-	at org.h2.engine.Database.getPageStore(Database.java:2739)
-	at org.h2.engine.Database.open(Database.java:769)
-	at org.h2.engine.Database.openDatabase(Database.java:319)
-	at org.h2.engine.Database.<init>(Database.java:313)
-	at org.h2.engine.Engine.openSession(Engine.java:69)
-	at org.h2.engine.Engine.openSession(Engine.java:201)
-	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
-	at org.h2.engine.Engine.createSession(Engine.java:161)
-	at org.h2.engine.Engine.createSession(Engine.java:31)
-	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:336)
-	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:502)
-	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:467)
-	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:170)
-	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:437)
-	at com.zaxxer.hikari.pool.PoolBase.quietlyCloseConnection(PoolBase.java:139)
-	at com.zaxxer.hikari.pool.HikariPool.lambda$closeConnection$1(HikariPool.java:447)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]" [50000-199]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
 	... 28 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/opt/tomcat/flowable-db/db.mv.db [1.4.199/7]
-	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
-	at org.h2.mvstore.FileStore.open(FileStore.java:166)
-	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
-	... 22 more
-Caused by: java.nio.channels.OverlappingFileLockException
-	at java.base/sun.nio.ch.FileLockTable.checkList(Unknown Source)
-	at java.base/sun.nio.ch.FileLockTable.add(Unknown Source)
-	at java.base/sun.nio.ch.FileChannelImpl.tryLock(Unknown Source)
-	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
-	at java.base/java.nio.channels.FileChannel.tryLock(Unknown Source)
-	at org.h2.mvstore.FileStore.open(FileStore.java:163)
-	... 23 more
