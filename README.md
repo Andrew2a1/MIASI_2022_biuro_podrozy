@@ -27,5 +27,5 @@ Uruchom plik `stop.bat`
 - [ ] Implementacja wysyłania wiadomości `[Cezary, Adam Z]`
 - [ ] Implementacja odbierania wiadomości (w formie symulacji przez zdarzenie użytkownika) `[Cezary]`
 - [ ] Implementacja zdarzenia przyłączonego typu timer `[Adam J]`
-- [ ] Implementacja zdarzenia przyłączonego typu błąd `[Adam B]`
-- [ ] Implementacja bramki logicznej `[Adam B]`
+- [x] Implementacja zdarzenia przyłączonego typu błąd `[Adam B]`
+- [x] Implementacja bramki logicznej `[Adam B]`
