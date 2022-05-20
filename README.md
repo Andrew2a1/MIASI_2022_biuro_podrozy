@@ -24,8 +24,8 @@ Uruchom plik `stop.bat`
 
 ### Sprint 2
 - [x] Przeniesienie diagramu do części związanej z podprocesem rezerwacji (bez tego podprocesu) `[Adam J, Adam Z]`
-- [ ] Implementacja wysyłania wiadomości `[Cezary, Adam Z]`
-- [ ] Implementacja odbierania wiadomości (w formie symulacji przez zdarzenie użytkownika) `[Cezary]`
+- [x] Implementacja wysyłania wiadomości `[Cezary, Adam Z]`
+- [x] Implementacja odbierania wiadomości (w formie symulacji przez zdarzenie użytkownika) `[Cezary]`
 - [x] Implementacja zdarzenia przyłączonego typu timer `[Adam J]`
 - [x] Implementacja zdarzenia przyłączonego typu błąd `[Adam B]`
 - [x] Implementacja bramki logicznej `[Adam B]`
