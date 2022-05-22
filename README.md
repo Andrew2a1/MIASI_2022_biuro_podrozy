@@ -29,3 +29,9 @@ Uruchom plik `stop.bat`
 - [x] Implementacja zdarzenia przyłączonego typu timer `[Adam J]`
 - [x] Implementacja zdarzenia przyłączonego typu błąd `[Adam B]`
 - [x] Implementacja bramki logicznej `[Adam B]`
+
+### Sprint 3
+- [] Implementacja podprocesu "Rezerwacja" - równoległość '[Adam B]'
+- [] Implementacja podprocesu "Rezerwacja" - czynności wysłania i odebrania wiadomości '[Adam Z]'
+- [] Implementacja podprocesu "Rezerwacja" - zdarzenia przyłączone '[Adam J]'
+- [] Implementacja czynności i zdarzeń po podprocesie '[Cezary]'
