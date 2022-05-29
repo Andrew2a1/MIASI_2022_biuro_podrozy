@@ -35,5 +35,5 @@ Uruchom plik `stop.bat`
 - [x] Poprawa nazw w formularzach `[Adam J]`
 - [x] Implementacja podprocesu "Rezerwacja" - równoległość `[Adam B]`
 - [ ] Implementacja podprocesu "Rezerwacja" - czynności wysłania i odebrania wiadomości `[Adam Z]`
-- [ ] Implementacja podprocesu "Rezerwacja" - zdarzenia przyłączone `[Adam J]`
+- [x] Implementacja podprocesu "Rezerwacja" - zdarzenia przyłączone `[Adam J]`
 - [ ] Implementacja czynności i zdarzeń po podprocesie `[Cezary]`
