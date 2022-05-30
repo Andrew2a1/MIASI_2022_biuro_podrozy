@@ -36,4 +36,4 @@ Uruchom plik `stop.bat`
 - [x] Implementacja podprocesu "Rezerwacja" - równoległość `[Adam B]`
 - [ ] Implementacja podprocesu "Rezerwacja" - czynności wysłania i odebrania wiadomości `[Adam Z]`
 - [x] Implementacja podprocesu "Rezerwacja" - zdarzenia przyłączone `[Adam J]`
-- [ ] Implementacja czynności i zdarzeń po podprocesie `[Cezary]`
+- [x] Implementacja czynności i zdarzeń po podprocesie `[Cezary]`
