@@ -34,6 +34,6 @@ Uruchom plik `stop.bat`
 - [x] Uzależnienie odpowiedzi biura od postawionych wymagań `[Cezary]`
 - [x] Poprawa nazw w formularzach `[Adam J]`
 - [x] Implementacja podprocesu "Rezerwacja" - równoległość `[Adam B]`
-- [ ] Implementacja podprocesu "Rezerwacja" - czynności wysłania i odebrania wiadomości `[Adam Z]`
+- [x] Implementacja podprocesu "Rezerwacja" - czynności wysłania i odebrania wiadomości `[Adam Z]`
 - [x] Implementacja podprocesu "Rezerwacja" - zdarzenia przyłączone `[Adam J]`
 - [x] Implementacja czynności i zdarzeń po podprocesie `[Cezary]`
