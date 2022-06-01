@@ -33,6 +33,7 @@ Uruchom plik `stop.bat`
 ### Sprint 3
 - [x] Uzależnienie odpowiedzi biura od postawionych wymagań `[Cezary]`
 - [x] Poprawa nazw w formularzach `[Adam J]`
+- [x] Obsługa błędu związanego z kwotą przelewu w porównaniu do ceny wycieczki `[Adam J]`
 - [x] Implementacja podprocesu "Rezerwacja" - równoległość `[Adam B]`
 - [x] Implementacja podprocesu "Rezerwacja" - czynności wysłania i odebrania wiadomości `[Adam Z]`
 - [x] Implementacja podprocesu "Rezerwacja" - zdarzenia przyłączone `[Adam J]`
